@@ -6,7 +6,7 @@ FROM nginx:stable-alpine AS base
 
 # Maintainer label
 LABEL maintainer="your-team@example.com"
-LABEL description="Foodista static website served via Nginx"
+LABEL description="foodista static website served via Nginx"
 
 # Remove the default Nginx welcome page
 RUN rm -rf /usr/share/nginx/html/*
