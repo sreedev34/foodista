@@ -1,20 +1,25 @@
-FROM python:3.11-slim
+# ─────────────────────────────────────────
+# Stage 1: Build stage (placeholder – extend
+#           if you add a build tool later)
+# ─────────────────────────────────────────
+FROM nginx:stable-alpine AS base
 
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+# Maintainer label
+LABEL maintainer="your-team@example.com"
+LABEL description="Maker static website served via Nginx"
 
-WORKDIR /app
+# Remove the default Nginx welcome page
+RUN rm -rf /usr/share/nginx/html/*
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+# Copy the entire project into the Nginx web root
+COPY . /usr/share/nginx/html/
 
-COPY . /app/
+# Optional: copy a custom Nginx config if you have one
+# COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-RUN adduser --disabled-password --gecos "" appuser && \
-    chown -R appuser:appuser /app
-USER appuser
+# Expose port 80
+EXPOSE 80
 
-EXPOSE 8000
+# Start Nginx in the foreground
+CMD ["nginx", "-g", "daemon off;"]
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
