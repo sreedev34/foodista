@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: foodista
-          image: sreedev34/foodista
+          image: sreedev34/foodista:2
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
