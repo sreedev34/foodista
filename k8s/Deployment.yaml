@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: foodista
+  labels:
+    app: foodista
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: foodista
+  template:
+    metadata:
+      labels:
+        app: foodista
+    spec:
+      containers:
+        - name: foodista
+          image: sreedev34/foodista
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"

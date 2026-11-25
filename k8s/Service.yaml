@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: foodista-service
+  labels:
+    app: foodista
+spec:
+  type: LoadBalancer
+  selector:
+    app: foodista
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8000
