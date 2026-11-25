@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: foodista
-          image: IMAGE_PLACEHOLDER          # replaced by Jenkinsfile at deploy time
+          image: sreedev34/foodista:9
           imagePullPolicy: Always
           ports:
             - containerPort: 80
