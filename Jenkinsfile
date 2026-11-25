@@ -50,7 +50,7 @@ pipeline {
                             docker build \
                                 -t ${DOCKER_IMAGE}:$BUILD_NUMBER \
                                 -t ${DOCKER_IMAGE}:latest \
-                                -f Dockerfile foodista
+                                -f Dockerfile .
 
                             # Push Docker images
                             docker push ${DOCKER_IMAGE}:$BUILD_NUMBER
@@ -76,7 +76,7 @@ pipeline {
 
                 git -c user.name='sreedev34' \
                     -c user.email='sreedevpattiam@gmail.com' \
-                    commit -am "chore(manifest): update maker image tag to ${BUILD_NUMBER} [skip ci]"
+                    commit -am "chore(manifest): update foodista image tag to ${BUILD_NUMBER} [skip ci]"
             """
 
                     // Authenticate Git push using Jenkins credentials
