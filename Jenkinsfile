@@ -72,7 +72,7 @@ pipeline {
 
                     sh """
                 # Update foodista deployment image
-                sed -i "s|image: ${DOCKER_IMAGE}:.*|image: ${DOCKER_IMAGE}:${BUILD_NUMBER}|g" k8s/Deployment.yaml
+                sed -i "s|image:.*|image: ${DOCKER_IMAGE}:${BUILD_NUMBER}|g" k8s/Deployment.yaml
 
                 git -c user.name='sreedev34' \
                     -c user.email='sreedevpattiam@gmail.com' \
